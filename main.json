@@ -1,0 +1,41 @@
+{
+	
+	"builders": [{
+    "type": "amazon-ebs",
+    "access_key": "{{user `aws_access_key`}}",
+    "secret_key": "{{user `aws_secret_key`}}",
+    "region": "{{user `region`}}",
+	"instance_type" : "{{user `base_instance_type`}}",
+	"source_ami_filter": {
+	    "filters": {
+	      "virtualization-type": "hvm",
+	      "name": "packer-ami-rachit",
+	      "root-device-type": "ebs"
+	    },
+	    "owners": ["421320058418"],
+	    "most_recent": true
+	  },
+	
+    "ssh_username": "ubuntu",
+    "ami_name": "base-ami {{timestamp}}",
+	"tags": {
+		"type" : "{{user `ami_tag_type_value`}}"
+	}
+  }],
+  	  "provisioners": [
+
+			 {
+			 "type": "shell",
+			 "inline": [
+				 "sudo echo {{user `region`}} > /tmp/ami-region"
+			 ]	
+			 },
+			 
+		     {
+  	          "type": "shell",
+			  "remote_path": "/home/ubuntu/script.sh",
+			  "script": "/home/ubuntu/ami/provision_base.sh"
+  	         }
+			
+  	      ] 
+}
