@@ -1,6 +1,6 @@
 { 
-    "aws_access_key": "AKIAWEGFB4YZDTQYLBGG",
-    "aws_secret_key": "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",
+    "aws_access_key": "XXXXXXXXXXXXXXXXXX",
+    "aws_secret_key": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
   	"region": "us-east-2",
 	"base_instance_type" : "t3a.small",
 	"ami_tag_type_value" : "base-ami-packer"
